@@ -11,6 +11,10 @@ rails generate migration add_first_name_field_to_user first_name:string
 rails generate migration add_last_name_field_to_user last_name:string
 bundle exec rake db:migrate
 
+rails generate migration add_teacher_field_to_user teacher:boolean
+rails generate migration add_admin_field_to_user admin:boolean
+bundle exec rake db:migrate
+
 rails generate devise:views
 
 rails generate scaffold World title:string description:text player:integer
