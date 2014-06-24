@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" class="auth">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tulos</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <%= yield %>
+      </div>
+    </div>
+
+    <hr>
+    <footer class="footer">
+      <p class="pull-left text-muted">&copy; Tampere University of Technology, AMC</p>
+
+      <p class="pull-right text-muted">
+        <% if user_signed_in? %>
+        Logged in as <%= current_user.email %>.
+        <% end %>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
