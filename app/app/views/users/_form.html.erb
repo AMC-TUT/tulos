@@ -1,40 +1,68 @@
-<%= simple_form_for @world, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
 
-  <% @model = @world %>
-  <%= render 'shared/error_messages' %>
+<% @model = @user %>
+<%= render 'shared/error_messages' %>
 
-  <div class="control-group">
-    <%= f.label :title, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :title, :class => 'text_field form-control', required: true %>
-    </div>
+<legend>Personal info</legend>
+
+<div class="control-group">
+  <%= f.label :first_name, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :first_name, :class => 'text_field form-control', required: true %>
   </div>
+</div>
 
-  <div class="control-group">
-    <%= f.label :description, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :description, :class => 'text_field form-control', required: true %>
-    </div>
+<div class="control-group">
+  <%= f.label :last_name, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :last_name, :class => 'text_field form-control', required: true %>
   </div>
+</div>
 
-  <div class="control-group">
-    <%= f.label :player, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :player, :class => 'number_field form-control', required: true, :min => 30, :max => 920, :value => 60 %>
-      <p class="help-block">Player position in X-axis. Default 60px.</p>
-    </div>
+<div class="control-group">
+  <%= f.label :email, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :email, :class => 'text_field form-control', required: true %>
   </div>
+</div>
 
-  <legend>Levels</legend>
+<legend style="padding-top: 20px;">Privileges</legend>
 
-  <%= f.fields_for :levels do |builder| %>
-    <%= render "level_fields", :f => builder %>
-  <% end %>
+<div class="control-group">
+ <div class="checkbox">
+  <label>
+    <%= f.input_field :teacher, as: :boolean, label: false, boolean_style: :inline %> Teacher
+  </label>
+</div>
+</div>
 
-  <hr>
+<legend>Authentication</legend>
 
-  <div class="form-actions">
-    <%= f.button :submit, :class => 'btn btn-primary' %>
-    <%= link_to 'Cancel', worlds_path, :class => 'btn btn-default' %>
+<div class="control-group">
+  <%= f.label :username, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :username, :class => 'text_field form-control', required: true %>
   </div>
+</div>
+
+<div class="control-group">
+  <%= f.label :password, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.password_field :password, :class => 'text_field form-control' %>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= f.label :password, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.password_field :password, :class => 'text_field form-control' %>
+  </div>
+</div>
+
+<hr>
+
+<div class="form-actions">
+  <%= f.button :submit, :class => 'btn btn-primary' %>
+  <%= link_to 'Cancel', users_path, :class => 'btn btn-default' %>
+</div>
 <% end %>
