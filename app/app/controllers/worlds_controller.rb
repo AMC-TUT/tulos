@@ -4,7 +4,7 @@ class WorldsController < ApplicationController
   # GET /worlds
   # GET /worlds.json
   def index
-    @worlds = World.all
+    @worlds = World.paginate(:page => params[:page])
   end
 
   # GET /worlds/1
@@ -76,7 +76,7 @@ class WorldsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def world_params
-      params.require(:world).permit(:title, :description, :player,
+      params.require(:world).permit(:title, :description, :player, :public,
         :levels_attributes => [:id, :world_id, :level_type, :level_format,
           :numbers_attributes => [:id, :level_id, :denominator, :numerator],
           :answer_attributes => [:id, :level_id, :denominator, :numerator],

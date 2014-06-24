@@ -1,31 +1,65 @@
-<h1>Listing worlds</h1>
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Worlds</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Player</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+    <% if @worlds.blank? %>
+      <%= render :partial => 'shared/empty' %>
+    <% else %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Public</th>
+          <th>Created at</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @worlds.each do |world| %>
-      <tr>
-        <td><%= world.title %></td>
-        <td><%= world.description %></td>
-        <td><%= world.player %></td>
-        <td><%= link_to 'Show', world %></td>
-        <td><%= link_to 'Edit', edit_world_path(world) %></td>
-        <td><%= link_to 'Destroy', world, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <tbody>
+        <% @worlds.each do |world| %>
+          <tr>
+            <td><%= world.title %></td>
+            <td><%= world.description %></td>
+            <td>
+              <% if world.public? %>
+                Yes
+              <% else %>
+                No
+              <% end %>
+            </td>
+            <td><%=l world.created_at %></td>
+            <td>
+              <%= link_to world  do %>
+                <span class="glyphicon glyphicon-info-sign" rel="tooltip" title="Show"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_world_path(world) do %>
+                <span class="glyphicon glyphicon-pencil" rel="tooltip" title="Edit"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to world, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <span class="glyphicon glyphicon-trash" rel="tooltip" title="Remove"></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="pagination-holder">
+      <%= will_paginate @worlds, :renderer => BootstrapPagination::Rails %>
+    </div>
     <% end %>
-  </tbody>
-</table>
 
-<br>
+    <br>
 
-<%= link_to 'New World', new_world_path %>
+    <%= link_to 'New World', new_world_path, :class => 'btn btn-primary' %>
+
+  </div>
+</div>
+

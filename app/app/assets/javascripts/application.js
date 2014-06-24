@@ -15,3 +15,9 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+if ($('html').hasClass('tulos')) {
+  $('span[rel=tooltip]').tooltip({
+    placement: "top"
+  });
+}

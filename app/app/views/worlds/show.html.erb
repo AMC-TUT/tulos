@@ -7,7 +7,8 @@
         <tr>
           <th>Title</th>
           <th>Description</th>
-          <th>Player (position)</th>
+          <th>Player</th>
+          <th>Public</th>
           <th>Created at</th>
         </tr>
       </thead>
@@ -15,7 +16,14 @@
         <tr>
           <td><%= @world.title %></td>
           <td><%= @world.description %></td>
-          <td><%= @world.player %></td>
+          <td><%= @world.player %>px</td>
+          <td>
+            <% if @world.public? %>
+            Yes
+            <% else %>
+            No
+            <% end %>
+          </td>
           <td><%=l @world.created_at %></td>
         </tr>
       </tbody>
@@ -45,11 +53,11 @@
         <% @world.levels.each do |level| %>
         <tr>
           <td>
-            <% if level.level_type == 1 %>
+            <% if level.level_type == 0 %>
             Single number
-            <% elsif level.level_type == 2 %>
+            <% elsif level.level_type == 1 %>
             Plus task
-            <% else %>
+            <% elsif level.level_type == 2 %>
             Minus task
             <% end %>
           </td>
@@ -61,15 +69,26 @@
             <% end %>
           </td>
           <td>
-            <% if level.level_format == 0 %>
-              <% if level.level_type == 0 %>
-                <%= "#{level.number[0].denominator}/#{level.number[0].numerator}" %>
-              <% else %>
-                <%= "0,#{level.numbers[0].denominator}" %>
+            <% if level.level_format == 0 %> <!-- Fraction -->
+              <% if level.level_type == 0 %> <!-- Single number -->
+                <%= "#{level.numbers[0].denominator}/#{level.numbers[0].numerator}" %>
+              <% else %> <!-- Plus and Minus -->
+                <%= "#{level.numbers[0].denominator}/#{level.numbers[0].numerator}" %>
+                <% if level.level_format == 1 %> + <% else %> - <% end %>
+                <%= "#{level.numbers[1].denominator}/#{level.numbers[1].numerator}" %>
               <% end %>
-            <% else %>
-             laskutehtava
+            <% end %> <!-- Fraction -->
+
+            <% if level.level_format == 1 %> <!-- Decimal -->
+              <% if level.level_type == 0 %> <!-- Single number -->
+                <%= "0,#{level.numbers[0].denominator}" %>
+              <% else %> <!-- Plus and Minus -->
+                <%= "0,#{level.numbers[0].denominator}" %>
+                <% if level.level_format == 1 %> + <% else %> - <% end %>
+                <%= "0,#{level.numbers[1].denominator}" %>
+              <% end %>
             <% end %>
+
           </td>
           <td>
             <% if level.level_format == 0 %>

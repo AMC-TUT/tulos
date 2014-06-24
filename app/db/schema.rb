@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624065107) do
+ActiveRecord::Schema.define(version: 20140624120611) do
 
   create_table "answers", force: true do |t|
     t.integer  "denominator"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20140624065107) do
     t.integer  "player"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "public",      default: true
   end
 
 end
