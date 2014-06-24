@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Users</h1>
+
+    <% if @users.blank? %>
+      <%= render :partial => 'shared/empty' %>
+    <% else %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Teacher</th>
+          <th>Admin</th>
+          <th>Created at</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.first_name %> <%= user.last_name %></td>
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+            <td>
+              <% if user.teacher? %>
+                Yes
+              <% else %>
+                No
+              <% end %>
+            </td>
+            <td>
+              <% if user.admin? %>
+                Yes
+              <% else %>
+                No
+              <% end %>
+            </td>
+            <td><%=l user.created_at %></td>
+            <td>
+              <%= link_to user  do %>
+                <span class="glyphicon glyphicon-info-sign" rel="tooltip" title="Show"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_user_path(user) do %>
+                <span class="glyphicon glyphicon-pencil" rel="tooltip" title="Edit"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <span class="glyphicon glyphicon-trash" rel="tooltip" title="Remove"></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="pagination-holder">
+      <%= will_paginate @users, :renderer => BootstrapPagination::Rails %>
+    </div>
+    <% end %>
+
+    <br>
+
+    <%= link_to 'New User', new_user_path, :class => 'btn btn-primary' %>
+
+  </div>
+</div>
+

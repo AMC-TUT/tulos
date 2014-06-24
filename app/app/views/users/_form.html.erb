@@ -1,0 +1,40 @@
+<%= simple_form_for @world, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <% @model = @world %>
+  <%= render 'shared/error_messages' %>
+
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field form-control', required: true %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :description, :class => 'text_field form-control', required: true %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :player, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :player, :class => 'number_field form-control', required: true, :min => 30, :max => 920, :value => 60 %>
+      <p class="help-block">Player position in X-axis. Default 60px.</p>
+    </div>
+  </div>
+
+  <legend>Levels</legend>
+
+  <%= f.fields_for :levels do |builder| %>
+    <%= render "level_fields", :f => builder %>
+  <% end %>
+
+  <hr>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+    <%= link_to 'Cancel', worlds_path, :class => 'btn btn-default' %>
+  </div>
+<% end %>
