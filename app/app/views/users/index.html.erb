@@ -3,8 +3,18 @@
     <h1>People</h1>
 
     <% if @users.blank? %>
-      <%= render :partial => 'shared/empty' %>
+    <%= render :partial => 'shared/empty' %>
     <% else %>
+
+    <div class="tag-cloud">
+      <span class="label label-default"><%= link_to 'show all', users_path %></span>
+      <% @tags.each do |tag| %>
+      <span class="label label-primary"><%= link_to tag.name, users_path(:tag => tag.name) %></span>
+      <% end %>
+    </div>
+
+    <hr>
+
     <table class="table table-striped">
       <thead>
         <tr>
@@ -20,35 +30,35 @@
 
       <tbody>
         <% @users.each do |user| %>
-          <tr>
-            <td><%= user.first_name %> <%= user.last_name %></td>
-            <td style="padding-left: 25px;">
-              <% if user.teacher? %>
-                <span class="glyphicon glyphicon-ok"></span>
-              <% end %>
-            </td>
-            <td>
-              <% user.groups.each do |group| %>
-                <span class="label label-primary"><%= link_to group.name, users_path(:tag => group.name) %></span>
-              <% end %>
-            </td>
-            <td><%=l user.created_at %></td>
-            <td>
-              <%= link_to user  do %>
-                <span class="glyphicon glyphicon-info-sign" rel="tooltip" title="Show"></span>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to edit_user_path(user) do %>
-                <span class="glyphicon glyphicon-pencil" rel="tooltip" title="Edit"></span>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                <span class="glyphicon glyphicon-trash" rel="tooltip" title="Remove"></span>
-              <% end %>
-            </td>
-          </tr>
+        <tr>
+          <td><%= user.first_name %> <%= user.last_name %></td>
+          <td style="padding-left: 25px;">
+            <% if user.teacher? %>
+            <span class="glyphicon glyphicon-ok"></span>
+            <% end %>
+          </td>
+          <td>
+            <% user.groups.each do |group| %>
+            <span class="label label-primary"><%= link_to group.name, users_path(:tag => group.name) %></span>
+            <% end %>
+          </td>
+          <td><%=l user.created_at %></td>
+          <td>
+            <%= link_to user  do %>
+            <span class="glyphicon glyphicon-info-sign" rel="tooltip" title="Show"></span>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to edit_user_path(user) do %>
+            <span class="glyphicon glyphicon-pencil" rel="tooltip" title="Edit"></span>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <span class="glyphicon glyphicon-trash" rel="tooltip" title="Remove"></span>
+            <% end %>
+          </td>
+        </tr>
         <% end %>
       </tbody>
     </table>

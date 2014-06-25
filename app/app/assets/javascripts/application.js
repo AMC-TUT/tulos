@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require select2
 //= require_tree .
 
 if ($('html').hasClass('tulos')) {
@@ -21,3 +22,17 @@ if ($('html').hasClass('tulos')) {
     placement: "top"
   });
 }
+
+// http://ivaynberg.github.io/select2
+$.when(function() {
+  var options = $('#list_groups option');
+  return $.map(options, function(option) {
+    return $(option).val();
+  });
+}).done(function(tags) {
+  $('#user_group_list').select2({
+    tags: tags,
+    maximumInputLength: 15,
+    tokenSeparators: [',', ' ']
+  });
+});

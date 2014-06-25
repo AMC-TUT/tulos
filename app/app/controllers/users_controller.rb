@@ -4,7 +4,13 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
   # GET /users
   # GET /users.json
   def index
-    @users = User.paginate(:page => params[:page])
+    if params[:tag].present?
+      @users = User.tagged_with(params[:tag]).paginate(:page => params[:page])
+    else
+      @users = User.paginate(:page => params[:page])
+    end
+    @tags = User.tag_counts_on(:groups)
+    puts @tabs.to_yaml
   end
 
   # GET /users/1

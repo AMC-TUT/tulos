@@ -39,11 +39,10 @@
 <div class="control-group">
   <%= f.label :group_list, 'Group Tags', :class => 'control-label' %>
   <div class="controls">
-    <%= f.text_field :group_list, label: false, :class => 'text_field form-control' %>
+    <%= f.text_field :group_list, input_html: { :list => "list_groups" }, label: false, :class => 'text_field form-control' %>
     <p class="help-block">Person can be tagged into informal groups to help finding and managing them later. These groups are only shown in this admin site and they are not public to the pupils or other unprivileged users. Group tag can be eg. ucpori2014.</p>
   </div>
-</div> <!-- , input_html: { :list => "list_groups" } -->
-
+</div>
 
 <datalist id="list_groups">
   <% User.group_counts.each do |group| %>
