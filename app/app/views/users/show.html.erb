@@ -9,6 +9,7 @@
           <th>Username</th>
           <th>Email</th>
           <th>Teacher</th>
+          <th>Groups</th>
           <th>Created at</th>
         </tr>
       </thead>
@@ -20,6 +21,11 @@
           <td style="padding-left: 25px;">
             <% if @user.teacher? %>
             <span class="glyphicon glyphicon-ok"></span>
+            <% end %>
+          </td>
+          <td>
+            <% @user.groups.each do |group| %>
+            <span class="label label-primary"><%= link_to group.name, users_path(:tag => group.name) %></span>
             <% end %>
           </td>
           <td><%=l @user.created_at %></td>

@@ -26,8 +26,8 @@
   </div>
 </div>
 
-<legend style="padding-top: 20px;">Privileges</legend>
-
+<legend style="padding-top: 20px;">Groups &amp; Privileges</legend>
+<p class="help-block">As a Teacher person is a privileged user with rights to manage users and create new game worlds.</p>
 <div class="control-group">
  <div class="checkbox">
   <label>
@@ -36,33 +36,48 @@
 </div>
 </div>
 
-<legend>Authentication</legend>
-
 <div class="control-group">
-  <%= f.label :username, :class => 'control-label' %>
+  <%= f.label :group_list, 'Group Tags', :class => 'control-label' %>
   <div class="controls">
-    <%= f.text_field :username, :class => 'text_field form-control', required: true %>
+    <%= f.text_field :group_list, label: false, :class => 'text_field form-control' %>
+    <p class="help-block">Person can be tagged into informal groups to help finding and managing them later. These groups are only shown in this admin site and they are not public to the pupils or other unprivileged users. Group tag can be eg. ucpori2014.</p>
   </div>
-</div>
+</div> <!-- , input_html: { :list => "list_groups" } -->
 
-<div class="control-group">
-  <%= f.label :password, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.password_field :password, :class => 'text_field form-control' %>
+
+<datalist id="list_groups">
+  <% User.group_counts.each do |group| %>
+  <option value="<%= group.name %>">
+    <% end %>
+  </datalist>
+
+  <legend>Authentication</legend>
+
+  <div class="control-group">
+    <%= f.label :username, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :username, :class => 'text_field form-control', required: true %>
+    </div>
   </div>
-</div>
 
-<div class="control-group">
-  <%= f.label :password_confirmation, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.password_field :password_confirmation, :class => 'text_field form-control' %>
+  <div class="control-group">
+    <%= f.label :password, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password, :class => 'text_field form-control' %>
+    </div>
   </div>
-</div>
 
-<hr>
+  <div class="control-group">
+    <%= f.label :password_confirmation, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation, :class => 'text_field form-control' %>
+    </div>
+  </div>
 
-<div class="form-actions">
-  <%= f.button :submit, :class => 'btn btn-primary' %>
-  <%= link_to 'Cancel', users_path, :class => 'btn btn-default' %>
-</div>
-<% end %>
+  <hr>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+    <%= link_to 'Cancel', users_path, :class => 'btn btn-default' %>
+  </div>
+  <% end %>
