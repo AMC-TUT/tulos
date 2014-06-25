@@ -24,15 +24,17 @@ if ($('html').hasClass('tulos')) {
 }
 
 // http://ivaynberg.github.io/select2
-$.when(function() {
-  var options = $('#list_groups option');
-  return $.map(options, function(option) {
-    return $(option).val();
+if ($('#list_groups').length) {
+  $.when(function() {
+    var options = $('#list_groups option');
+    return $.map(options, function(option) {
+      return $(option).val();
+    });
+  }).done(function(tags) {
+    $('#user_group_list').select2({
+      tags: tags,
+      maximumInputLength: 15,
+      tokenSeparators: [',', ' ']
+    });
   });
-}).done(function(tags) {
-  $('#user_group_list').select2({
-    tags: tags,
-    maximumInputLength: 15,
-    tokenSeparators: [',', ' ']
-  });
-});
+}
