@@ -33,4 +33,8 @@ App::Application.configure do
   WillPaginate.per_page = 10
   #
   I18n.enforce_available_locales = false
+  # Tags
+  ActsAsTaggableOn.remove_unused_tags = true
+  ActsAsTaggableOn.force_lowercase = true
+
 end

@@ -1,118 +1,35 @@
 <div class="row">
   <div class="col-sm-12">
-    <h1>World</h1>
+    <h1>Person</h1>
 
     <table class="table">
       <thead>
         <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Player</th>
-          <th>Public</th>
+          <th>Full Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Teacher</th>
           <th>Created at</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><%= @world.title %></td>
-          <td><%= @world.description %></td>
-          <td><%= @world.player %>px</td>
-          <td>
-            <% if @world.public? %>
-            Yes
-            <% else %>
-            No
+          <td><%= @user.first_name %> <%= @user.last_name %></td>
+          <td><%= @user.username %></td>
+          <td><%= @user.email %></td>
+          <td style="padding-left: 25px;">
+            <% if @user.teacher? %>
+            <span class="glyphicon glyphicon-ok"></span>
             <% end %>
           </td>
-          <td><%=l @world.created_at %></td>
+          <td><%=l @user.created_at %></td>
         </tr>
       </tbody>
     </table>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-sm-12">
-    <h1>Levels</h1>
+  <br>
 
-    <% if @world.levels.blank? %>
-    <%= render :partial => 'shared/empty' %>
-    <% else %>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Level type</th>
-          <th>Level format</th>
-          <th>Question</th>
-          <th>Answer</th>
-          <th>Trap</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @world.levels.each do |level| %>
-        <tr>
-          <td>
-            <% if level.level_type == 0 %>
-            Single number
-            <% elsif level.level_type == 1 %>
-            Plus task
-            <% elsif level.level_type == 2 %>
-            Minus task
-            <% end %>
-          </td>
-          <td>
-            <% if level.level_format == 0 %>
-            Fraction
-            <% else %>
-            Decimal
-            <% end %>
-          </td>
-          <td>
-            <% if level.level_format == 0 %> <!-- Fraction -->
-              <% if level.level_type == 0 %> <!-- Single number -->
-                <%= "#{level.numbers[0].denominator}/#{level.numbers[0].numerator}" %>
-              <% else %> <!-- Plus and Minus -->
-                <%= "#{level.numbers[0].denominator}/#{level.numbers[0].numerator}" %>
-                <% if level.level_format == 1 %> + <% else %> - <% end %>
-                <%= "#{level.numbers[1].denominator}/#{level.numbers[1].numerator}" %>
-              <% end %>
-            <% end %> <!-- Fraction -->
-
-            <% if level.level_format == 1 %> <!-- Decimal -->
-              <% if level.level_type == 0 %> <!-- Single number -->
-                <%= "0,#{level.numbers[0].denominator}" %>
-              <% else %> <!-- Plus and Minus -->
-                <%= "0,#{level.numbers[0].denominator}" %>
-                <% if level.level_format == 1 %> + <% else %> - <% end %>
-                <%= "0,#{level.numbers[1].denominator}" %>
-              <% end %>
-            <% end %>
-
-          </td>
-          <td>
-            <% if level.level_format == 0 %>
-            <%= "#{level.answer.denominator}/#{level.answer.numerator}" %>
-            <% else %>
-            <%= "0,#{level.answer.denominator}" %>
-            <% end %>
-          </td>
-          <td>
-            <% if level.level_format == 0 %>
-            <%= "#{level.trap.denominator}/#{level.trap.numerator}" %>
-            <% else %>
-            <%= "0,#{level.trap.denominator}" %>
-            <% end %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <% end %>
-
-    <br>
-
-    <%= link_to 'Edit World', edit_world_path(@world), :class => 'btn btn-primary' %>
-    <%= link_to 'Back', worlds_path, :class => 'btn btn-default' %>
-  </div>
+  <%= link_to 'Edit Person', edit_user_path(@user), :class => 'btn btn-primary' %>
+  <%= link_to 'Back', users_path, :class => 'btn btn-default' %>
 </div>
