@@ -33,6 +33,8 @@ class WorldsController < ApplicationController
   def create
     @world = World.new(world_params)
 
+    @world.user = current_user
+
     respond_to do |format|
       if @world.save
         format.html { redirect_to @world, notice: 'World was successfully created.' }

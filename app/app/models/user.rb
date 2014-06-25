@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   acts_as_taggable_on :groups
 
+  has_many :worlds
+
   validates :first_name, :presence => true
   validates :last_name, :presence => true
   validates :email, :presence => true

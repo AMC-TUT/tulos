@@ -20,6 +20,9 @@ rails generate devise:views
 rails generate scaffold World title:string description:text player:integer
 bundle exec rake db:migrate
 
+rails generate migration add_user_field_to_world user:references
+bundle exec rake db:migrate
+
 rails generate migration add_public_field_to_world public:boolean
 bundle exec rake db:migrate
 
