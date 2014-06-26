@@ -38,3 +38,19 @@ bundle exec rake db:migrate
 rails generate model Number denominator:integer numerator:integer level:references
 bundle exec rake db:migrate
 
+rails generate model GameLevelAnswer solved:integer accuracy:integer x:integer
+bundle exec rake db:migrate
+
+rails generate model GameLevel level_format:integer solved:integer skip:integer trap:integer jumps:integer distance:integer
+bundle exec rake db:migrate
+
+rails generate scaffold GameEvent user:references world:references movement:integer health:integer
+bundle exec rake db:migrate
+
+rails generate migration add_game_event_field_to_game_level game_event:references
+bundle exec rake db:migrate
+
+rails generate migration add_game_level_field_to_game_level_answer game_level:references
+bundle exec rake db:migrate
+
+

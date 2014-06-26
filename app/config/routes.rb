@@ -1,5 +1,7 @@
 App::Application.routes.draw do
 
+  resources :game_events
+
   resources :worlds
 
 

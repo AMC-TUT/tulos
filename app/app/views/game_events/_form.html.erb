@@ -1,0 +1,14 @@
+<%= simple_form_for(@game_event) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :user %>
+    <%= f.association :world %>
+    <%= f.input :movement %>
+    <%= f.input :health %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

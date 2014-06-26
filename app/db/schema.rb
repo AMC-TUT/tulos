@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625184600) do
+ActiveRecord::Schema.define(version: 20140626084040) do
 
   create_table "answers", force: true do |t|
     t.integer  "denominator"
@@ -22,6 +22,43 @@ ActiveRecord::Schema.define(version: 20140625184600) do
   end
 
   add_index "answers", ["level_id"], name: "index_answers_on_level_id", using: :btree
+
+  create_table "game_events", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "world_id"
+    t.integer  "movement"
+    t.integer  "health"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "game_events", ["user_id"], name: "index_game_events_on_user_id", using: :btree
+  add_index "game_events", ["world_id"], name: "index_game_events_on_world_id", using: :btree
+
+  create_table "game_level_answers", force: true do |t|
+    t.integer  "solved"
+    t.integer  "accuracy"
+    t.integer  "x"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "game_level_id"
+  end
+
+  add_index "game_level_answers", ["game_level_id"], name: "index_game_level_answers_on_game_level_id", using: :btree
+
+  create_table "game_levels", force: true do |t|
+    t.integer  "level_format"
+    t.integer  "solved"
+    t.integer  "skip"
+    t.integer  "trap"
+    t.integer  "jumps"
+    t.integer  "distance"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "game_event_id"
+  end
+
+  add_index "game_levels", ["game_event_id"], name: "index_game_levels_on_game_event_id", using: :btree
 
   create_table "levels", force: true do |t|
     t.datetime "created_at"
