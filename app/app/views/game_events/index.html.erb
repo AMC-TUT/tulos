@@ -1,33 +1,61 @@
-<h1>Listing game_events</h1>
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Game Events</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>World</th>
-      <th>Movement</th>
-      <th>Health</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+    <% if @game_events.blank? %>
+      <%= render :partial => 'shared/empty' %>
+    <% else %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>World</th>
+          <th>Movement</th>
+          <th>Health</th>
+          <th>Created at</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @game_events.each do |game_event| %>
-      <tr>
-        <td><%= game_event.user %></td>
-        <td><%= game_event.world %></td>
-        <td><%= game_event.movement %></td>
-        <td><%= game_event.health %></td>
-        <td><%= link_to 'Show', game_event %></td>
-        <td><%= link_to 'Edit', edit_game_event_path(game_event) %></td>
-        <td><%= link_to 'Destroy', game_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <tbody>
+          <% @game_events.each do |game_event| %>
+          <tr>
+            <td><%= game_event.user.first_name %> <%= game_event.user.last_name %></td>
+            <td><%= game_event.world.title %></td>
+            <td><%= game_event.movement %></td>
+            <td><%= game_event.health %></td>
+            <td><%=l game_event.created_at %></td>
+            <td>
+              <%= link_to game_event  do %>
+                <span class="glyphicon glyphicon-info-sign" rel="tooltip" title="Show"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_game_event_path(game_event) do %>
+                <span class="glyphicon glyphicon-pencil" rel="tooltip" title="Edit"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to game_event, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <span class="glyphicon glyphicon-trash" rel="tooltip" title="Remove"></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="pagination-holder">
+      <%= will_paginate @game_events, :renderer => BootstrapPagination::Rails %>
+    </div>
     <% end %>
-  </tbody>
-</table>
 
-<br>
+    <br>
 
-<%= link_to 'New Game event', new_game_event_path %>
+    <%= link_to 'New Game Event', new_game_event_path, :class => 'btn btn-primary' %>
+
+  </div>
+</div>
+
