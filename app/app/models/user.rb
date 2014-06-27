@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   acts_as_taggable_on :groups
 
   has_many :worlds, :dependent => :destroy
+  has_many :game_events, :dependent => :destroy
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true

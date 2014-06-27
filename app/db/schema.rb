@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140626085524) do
+ActiveRecord::Schema.define(version: 20140626131522) do
 
   create_table "answers", force: true do |t|
     t.integer  "denominator"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20140626085524) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "game_event_id"
-    t.integer  "game_type"
+    t.integer  "level_type"
   end
 
   add_index "game_levels", ["game_event_id"], name: "index_game_levels_on_game_event_id", using: :btree

@@ -1,14 +1,55 @@
-<%= simple_form_for(@game_event) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for @game_event, :html => { :class => 'form-horizontal' } do |f| %>
 
-  <div class="form-inputs">
-    <%= f.association :user %>
-    <%= f.association :world %>
-    <%= f.input :movement %>
-    <%= f.input :health %>
-  </div>
+<% @model = @game_event %>
+<%= render 'shared/error_messages' %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="control-group">
+      <div class="controls">
+        <%= f.association :user, collection: User.all(order: 'last_name'), prompt: "Choose", :label => "Person", :label_method => lambda { |p| "#{p.first_name} #{p.last_name}" }, :value_method => :id, required: true %>
+      </div>
+    </div>
   </div>
+  <div class="col-sm-6">
+    <div class="control-group">
+      <div class="controls">
+        <%= f.association :world, collection: World.all(order: 'title'), prompt: "Choose", :label => "World", :label_method => lambda { |w| "#{w.title}" }, :value_method => :id, required: true %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="control-group">
+      <%= f.label :movement, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :movement, :class => 'form-control', required: true, :min => 1, :max => 3, :value => 3 %>
+        <p class="help-block">Movement type: 1. Keyboard, 2. Tilt, 3. Run.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="control-group">
+      <%= f.label :health, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :health, :class => 'form-control', required: true, :min => 0, :max => 100, :value => 0 %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Levels</h2>
+
+<%= f.fields_for :game_levels do |builder| %>
+<%= render "level_fields", :f => builder %>
+<% end %>
+
+<hr>
+
+<div class="form-actions">
+  <%= f.button :submit, :class => 'btn btn-primary' %>
+  <%= link_to 'Cancel', game_events_path, :class => 'btn btn-default' %>
+</div>
 <% end %>

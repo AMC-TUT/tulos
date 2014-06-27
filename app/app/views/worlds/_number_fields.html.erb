@@ -1,13 +1,19 @@
-<div class="control-group">
-  <%= f.label :denominator, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.number_field :denominator, :class => 'number_field form-control', required: true, :min => 1, :max => 99, :value => 1 %>
-  </div>
-</div>
 
-<div class="control-group">
-  <%= f.label :numerator, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.number_field :numerator, :class => 'number_field form-control', :min => 1, :max => 99 %>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="control-group">
+      <%= f.label :denominator, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :denominator, :class => 'form-control', required: true, :min => 1, :max => 99, :value => 1 %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="control-group">
+      <%= f.label :numerator, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :numerator, :class => 'form-control', :min => 1, :max => 99 %>
+      </div>
+    </div>
   </div>
 </div>

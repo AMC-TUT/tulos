@@ -79,9 +79,9 @@ class WorldsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def world_params
       params.require(:world).permit(:title, :description, :player, :public,
-        :levels_attributes => [:id, :world_id, :level_type, :level_format,
-          :numbers_attributes => [:id, :level_id, :denominator, :numerator],
-          :answer_attributes => [:id, :level_id, :denominator, :numerator],
-          :trap_attributes => [:id, :level_id, :denominator, :numerator]])
+        :levels_attributes => [:world_id, :level_type, :level_format,
+          :numbers_attributes => [:level_id, :denominator, :numerator],
+          :answer_attributes => [:level_id, :denominator, :numerator],
+          :trap_attributes => [:level_id, :denominator, :numerator]])
     end
 end

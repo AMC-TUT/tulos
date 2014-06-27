@@ -4,7 +4,7 @@ class GameEventsController < ApplicationController
   # GET /game_events
   # GET /game_events.json
   def index
-    @game_events = GameEvent.all
+    @game_events = GameEvent.paginate(:page => params[:page])
   end
 
   # GET /game_events/1
@@ -15,6 +15,11 @@ class GameEventsController < ApplicationController
   # GET /game_events/new
   def new
     @game_event = GameEvent.new
+
+    5.times do
+      lvl = @game_event.game_levels.build
+      2.times { lvl.game_level_answers.build }
+    end
   end
 
   # GET /game_events/1/edit
@@ -69,6 +74,8 @@ class GameEventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_event_params
-      params.require(:game_event).permit(:user_id, :world_id, :movement, :health)
+      params.require(:game_event).permit(:user_id, :world_id, :movement, :health,
+        :game_levels_attributes => [:level_format, :level_type, :solved, :skip, :trap, :jumps, :distance,
+          :game_level_answers_attributes => [:x, :accuracy, :solved]])
     end
 end

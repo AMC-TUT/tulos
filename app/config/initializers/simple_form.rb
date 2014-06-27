@@ -101,7 +101,7 @@ SimpleForm.setup do |config|
   # config.form_class = :simple_form
 
   # You can define which elements should obtain additional classes
-  # config.generate_additional_classes_for = [:wrapper, :label, :input]
+  config.generate_additional_classes_for = [:wrapper, :label, :input, :select, :collection]
 
   # Whether attributes are required by default (or not). Default is true.
   # config.required_by_default = true
@@ -141,5 +141,5 @@ SimpleForm.setup do |config|
   # config.cache_discovery = !Rails.env.development?
 
   # Default class for inputs
-  # config.input_class = nil
+  config.input_class = 'form-control'
 end

@@ -1,34 +1,42 @@
 
-<h4>Level</h4>
+<br>
+<legend>Level</legend>
 
-<div class="control-group">
-  <%= f.label :level_type, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.number_field :level_type, :class => 'number_field form-control', required: true, :min => 1, :max => 3, :value => 1 %>
-    <p class="help-block">Type options: 1. Single number, 2. Plus task, 3. Minus task.</p>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="control-group">
+      <%= f.label :level_type, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :level_type, :class => 'form-control', required: true, :min => 1, :max => 3, :value => 1 %>
+        <p class="help-block">Type options: 1. Single number, 2. Plus task, 3. Minus task.</p>
+      </div>
+    </div>
   </div>
-</div>
-
-<div class="control-group">
-  <%= f.label :level_format, :class => 'control-label' %>
-  <div class="controls">
-    <%= f.number_field :level_format, :class => 'number_field form-control', :min => 0, :max => 1, :value => 0 %>
-    <p class="help-block">Format options: 0. Fraction number, 1. Decimal number.</p>
+  <div class="col-sm-6">
+    <div class="control-group">
+      <%= f.label :level_format, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :level_format, :class => 'form-control', :min => 0, :max => 1, :value => 0 %>
+        <p class="help-block">Format options: 0. Fraction number, 1. Decimal number.</p>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-sm-11 col-sm-offset-1">
+  <div class="col-sm-12">
     <legend>Numbers</legend>
     <%= f.fields_for :numbers do |builder| %>
     <%= render "number_fields", :f => builder %>
     <% end %>
 
+    <br>
     <legend>Answer</legend>
     <%= f.fields_for :answer do |builder| %>
     <%= render "number_fields", :f => builder %>
     <% end %>
 
+    <br>
     <legend>Trap</legend>
     <%= f.fields_for :trap do |builder| %>
     <%= render "number_fields", :f => builder %>
@@ -36,3 +44,6 @@
 
   </div>
 </div>
+
+<hr>
+

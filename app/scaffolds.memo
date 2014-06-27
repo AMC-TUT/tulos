@@ -53,6 +53,12 @@ bundle exec rake db:migrate
 rails generate migration add_game_type_field_to_game_level game_type:integer
 bundle exec rake db:migrate
 
+rails generate migration add_level_type_field_to_game_level level_type:integer
+bundle exec rake db:migrate
+
+rails generate migration RemoveGameTypeFromGameLevel game_type:integer
+bundle exec rake db:migrate
+
 rails generate migration add_game_level_field_to_game_level_answer game_level:references
 bundle exec rake db:migrate
 

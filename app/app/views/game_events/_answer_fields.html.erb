@@ -1,0 +1,30 @@
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="control-group">
+      <%= f.label :solved, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :solved, :class => 'form-control', required: true, :min => 0 %>
+        <p class="help-block">Timestamp.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="control-group">
+      <%= f.label :accuracy, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :accuracy, :class => 'form-control', :value => 0 %>
+        <p class="help-block">Accuracy percentage</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="control-group">
+      <%= f.label :x, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :x, :class => 'form-control', :min => 0, :value => 0 %>
+        <p class="help-block">Player x-position.</p>
+      </div>
+    </div>
+  </div>
+</div>

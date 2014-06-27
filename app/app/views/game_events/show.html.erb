@@ -29,7 +29,7 @@
   <div class="col-sm-12">
     <h1>Levels</h1>
 
-    <% if @game_event.levels.blank? %>
+    <% if @game_event.game_levels.blank? %>
     <%= render :partial => 'shared/empty' %>
     <% else %>
     <table class="table table-striped">
@@ -46,7 +46,7 @@
       </thead>
 
       <tbody>
-        <% @game_event.levels.each do |level| %>
+        <% @game_event.game_levels.each do |level| %>
         <tr>
           <td>
             <% if level.level_type == 0 %>
