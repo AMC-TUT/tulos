@@ -1,7 +1,7 @@
 module BootstrapFlashHelper
-  ALERT_TYPES = [:error, :info, :warning] unless const_defined?(:ALERT_TYPES)
+  ALERT_TYPES = [:error, :info, :warning, :success] unless const_defined?(:ALERT_TYPES)
   # Basic success messages removed from flashing for nothing.
-  # , :success
+  #
 
   def bootstrap_flash
     flash_messages = []

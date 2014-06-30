@@ -39,13 +39,17 @@
               <% end %>
             </td>
             <td>
-              <%= link_to edit_world_path(world) do %>
-                <span class="glyphicon glyphicon-pencil" rel="tooltip" title="Edit"></span>
+              <% if current_user == world.user or current_user.try(:admin?) %>
+                <%= link_to edit_world_path(world) do %>
+                  <span class="glyphicon glyphicon-pencil" rel="tooltip" title="Edit"></span>
+                <% end %>
               <% end %>
             </td>
             <td>
-              <%= link_to world, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                <span class="glyphicon glyphicon-trash" rel="tooltip" title="Remove"></span>
+              <% if current_user.try(:admin?) %>
+                <%= link_to world, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <span class="glyphicon glyphicon-trash" rel="tooltip" title="Remove"></span>
+                <% end %>
               <% end %>
             </td>
           </tr>

@@ -55,8 +55,10 @@
             <% end %>
           </td>
           <td>
-            <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
-            <span class="glyphicon glyphicon-trash" rel="tooltip" title="Remove"></span>
+            <% if current_user.try(:admin?) %>
+              <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-trash" rel="tooltip" title="Remove"></span>
+              <% end %>
             <% end %>
           </td>
         </tr>

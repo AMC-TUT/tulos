@@ -23,6 +23,9 @@ if ($('html').hasClass('tulos')) {
   });
 }
 
+// Quick dirty hack. Shame on me!
+$('input[type=checkbox]').removeClass('form-control');
+
 // http://ivaynberg.github.io/select2
 if ($('#list_groups').length) {
   $.when(function() {
