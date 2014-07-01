@@ -1,3 +1,6 @@
 class WorldSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :player
+  embed :ids, include: true
+
+  attributes :id, :user_id, :title, :description, :player, :public, :created_at
+  has_many :levels
 end

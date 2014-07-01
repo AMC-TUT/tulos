@@ -5,6 +5,11 @@ class WorldsController < ApplicationController
   # GET /worlds.json
   def index
     @worlds = World.paginate(:page => params[:page])
+
+    respond_to do |format|
+      format.html { render html: @worlds }
+      format.json { render json: @worlds }
+    end
   end
 
   # GET /worlds/1

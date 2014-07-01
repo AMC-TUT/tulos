@@ -1,3 +1,3 @@
 class LevelSerializer < ActiveModel::Serializer
-  attributes :id, :type, :decimal
+  attributes :id, :world_id, :level_type, :level_format
 end
