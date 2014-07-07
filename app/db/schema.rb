@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140626131522) do
+ActiveRecord::Schema.define(version: 20140707112915) do
 
   create_table "answers", force: true do |t|
     t.integer  "denominator"
@@ -140,8 +140,10 @@ ActiveRecord::Schema.define(version: 20140626131522) do
     t.datetime "updated_at"
     t.boolean  "public",      default: true
     t.integer  "user_id"
+    t.integer  "play_count",  default: 0
   end
 
+  add_index "worlds", ["play_count"], name: "index_worlds_on_play_count", using: :btree
   add_index "worlds", ["user_id"], name: "index_worlds_on_user_id", using: :btree
 
 end
