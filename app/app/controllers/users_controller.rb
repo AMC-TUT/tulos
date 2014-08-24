@@ -34,7 +34,7 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
 
     respond_to do |format|
       if @user.save # @user
-        format.html { redirect_to users_url, notice: 'User was successfully created.' }
+        format.html { redirect_to u_path(@user), notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
@@ -48,7 +48,7 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to u_path, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -62,7 +62,7 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url }
+      format.html { redirect_to u_index_path }
       format.json { head :no_content }
     end
   end

@@ -21,7 +21,7 @@
       <div class="navbar pull-right">
         <ul class="nav navbar-nav">
           <li><%= link_to 'Worlds', worlds_path %></li>
-          <li><%= link_to 'People', users_path %></li>
+          <li><%= link_to 'People', u_index_path %></li>
           <% if current_user.try(:admin?) %>
             <li><%= link_to 'Game Events', game_events_path %></li>
           <% end %>

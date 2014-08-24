@@ -16,7 +16,7 @@ App::Application.routes.draw do
   #   sign_up: 'cmon_let_me_in'
   # }
 
-  resources :users
+  resources :u, :controller => 'users'
 
   root to: "worlds#index"
 
